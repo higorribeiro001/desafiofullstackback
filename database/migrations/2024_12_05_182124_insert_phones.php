@@ -13,9 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            
-        });
+        $phone = new \App\Models\Phone();
+        $phone->num = '+55 (99) 99999-9999';
+        $phone->user_id = 1;
+        $phone->save();
+
+        $phone = new \App\Models\Phone();
+        $phone->num = '+55 (99) 98888-9999';
+        $phone->user_id = 2;
+        $phone->save();
     }
 
     /**
@@ -25,8 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('phone_id');
-        });
+        DB::table('phones')->truncate();
     }
 };

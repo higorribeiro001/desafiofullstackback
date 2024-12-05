@@ -20,7 +20,6 @@ return new class extends Migration
         $user->email = 'admin@teste.com.br';
         $user->email_verified_at = now()->getTimestamp();
         $user->password = bcrypt('12345678');
-        $user->phone = '(11) 9999-9999';
         $user->save();
         $user->createToken(Str::random(60),)->plainTextToken;
 
@@ -29,7 +28,6 @@ return new class extends Migration
         $user->email = 'beltrano@teste.com.br';
         $user->email_verified_at = now()->getTimestamp();
         $user->password = bcrypt('12345678');
-        $user->phone = '(11) 9999-8888';
         $user->save();
         $user->createToken(Str::random(60))->plainTextToken;
     }
