@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Model;
+use App\Mail\MessageRegisterUserMail;
+use Illuminate\Support\Facades\Mail;
 
 class User extends Model
 {
@@ -31,5 +33,9 @@ class User extends Model
 
     public function phones() {
         return $this->hasMany('App\Models\Phone');
+    }
+
+    public function sendSuccessRegisterNotification($email, $name) {
+        Mail::to($email)->send(new MessageRegisterUserMail($name));
     }
 }

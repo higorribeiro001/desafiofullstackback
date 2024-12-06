@@ -37,19 +37,20 @@ class UserController extends Controller
     }
 
     public function store(Request $request) {
-        $user = $this->user;
 
-        $request->validate($user->rules());
+        $request->validate($this->user->rules());
         $image = $request->file('image');
         $image_urn = $image->store('images/users', 'public');
 
-        $user->create([
+        $user = $this->user->create([
             'name'      => $request->name,
             'image'     => $image_urn,
             'email'     => $request->email,
             'company'   => $request->company,
             'password'  => Hash::make($request->password),
         ]);
+
+        $user->sendSuccessRegisterNotification($request->email, $request->name);
 
         return response()->json($user, 201);
     }
