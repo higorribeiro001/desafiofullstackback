@@ -22,6 +22,13 @@ class PhoneController extends Controller
      *      summary="Get all phones",
      *      description="Get all phones",
      *      tags={"Phones"},
+     *      @OA\Parameter(
+     *        name="page",
+     *        in="query",
+     *        description="number of page",
+     *        required=true,
+     *        @OA\Schema(type="integer")
+     *      ),
      *      @OA\Response(
      *          response=200,
      *          description="OK",
@@ -34,7 +41,7 @@ class PhoneController extends Controller
     */
     public function index()
     {
-        return response()->json($this->phone->with('user:id,name')->get(), 200);
+        return response()->json($this->phone->with('user:id,name')->paginate(10), 200);
     }
 
     /**

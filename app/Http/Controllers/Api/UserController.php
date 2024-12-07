@@ -22,6 +22,13 @@ class UserController extends Controller
     *      summary="Get all users",
     *      description="Get all users",
     *      tags={"Users"},
+    *      @OA\Parameter(
+    *         name="page",
+    *         in="query",
+    *         description="number of page",
+    *         required=true,
+    *         @OA\Schema(type="integer")
+    *      ),
     *      @OA\Response(
     *          response=200,
     *          description="OK",
@@ -33,7 +40,7 @@ class UserController extends Controller
     *  )
     */
     public function index() {
-        return response()->json($this->user->select(['id', 'name', 'email', 'company', 'created_at', 'updated_at'])->with('phones:user_id,num')->get(), 200);
+        return response()->json($this->user->select(['id', 'name', 'email', 'company', 'created_at', 'updated_at'])->with('phones:user_id,num')->paginate(10), 200);
     }
 
     /**

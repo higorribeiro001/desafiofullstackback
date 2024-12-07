@@ -39,6 +39,17 @@
                 "summary": "Get all phones",
                 "description": "Get all phones",
                 "operationId": "c84750a44448a2d742dec9cfbdff7d04",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "number of page",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -226,6 +237,17 @@
                 "summary": "Get all users",
                 "description": "Get all users",
                 "operationId": "ef3192335324c07faff67807a2e8a2f8",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "number of page",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
