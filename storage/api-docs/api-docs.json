@@ -1,0 +1,482 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "RESTful API fullstack challenge",
+        "description": "This is the API documentation for the application",
+        "contact": {
+            "email": "higorribeiroaraujo007@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/job": {
+            "get": {
+                "tags": [
+                    "Job"
+                ],
+                "summary": "Start job",
+                "description": "Route to start the news sending job",
+                "operationId": "8d84f4e76898766367bb80fe3f0c4638",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/api/phone": {
+            "get": {
+                "tags": [
+                    "Phones"
+                ],
+                "summary": "Get all phones",
+                "description": "Get all phones",
+                "operationId": "c84750a44448a2d742dec9cfbdff7d04",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Phones"
+                ],
+                "summary": "Create a new phone",
+                "description": "Create a new phone by providing the necessary information",
+                "operationId": "68f792baecce3adab0a1555462371c28",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "user_id",
+                                    "num"
+                                ],
+                                "properties": {
+                                    "user_id": {
+                                        "description": "The user id",
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "num": {
+                                        "description": "The number of phone",
+                                        "type": "string",
+                                        "example": "(99) 99999-9999"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Phone created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "user_id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "num": {
+                                            "type": "string",
+                                            "example": "(99) 99999-9999"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/phone/{id}": {
+            "get": {
+                "tags": [
+                    "Phones"
+                ],
+                "summary": "Get phone",
+                "description": "Get phone",
+                "operationId": "4c6848d41f8137b980909c368de44ce0",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "phone id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Phones"
+                ],
+                "summary": "Delete phone",
+                "description": "Delete phone",
+                "operationId": "53012e45008fbff7f68151b6c61d85b2",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "phone id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Phone removed successfully.",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Phones"
+                ],
+                "summary": "Update a new phone",
+                "description": "Update a new phone by providing the necessary information",
+                "operationId": "044f33be4999c05dde0227bc993c8a5e",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "phone id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "user_id": {
+                                        "description": "The user id",
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "num": {
+                                        "description": "The number of phone",
+                                        "type": "string",
+                                        "example": "(99) 99999-9999"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Phone updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "user_id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "num": {
+                                            "type": "string",
+                                            "example": "(99) 99999-9999"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/user": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get all users",
+                "description": "Get all users",
+                "operationId": "ef3192335324c07faff67807a2e8a2f8",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Create a new user",
+                "description": "Create a new user by providing the necessary information",
+                "operationId": "287bc3ec931e652c54bb2ddb777040bc",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "email",
+                                    "company",
+                                    "password",
+                                    "image"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "User's name",
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "description": "User's email",
+                                        "type": "string",
+                                        "format": "email"
+                                    },
+                                    "company": {
+                                        "description": "User's company",
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "description": "User's password",
+                                        "type": "string",
+                                        "format": "password"
+                                    },
+                                    "image": {
+                                        "description": "User profile image (PNG, JPEG, JPG)",
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "User created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "image": {
+                                            "type": "string",
+                                            "example": "images/jsko99asd00dj.jpg"
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "example": "John Doe"
+                                        },
+                                        "email": {
+                                            "type": "string",
+                                            "example": "john.doe@example.com"
+                                        },
+                                        "company": {
+                                            "type": "string",
+                                            "example": "Microsoft"
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "example": "2024-12-07T12:00:00Z"
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "example": "2024-12-07T12:00:00Z"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/user/{id}": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get user",
+                "description": "Get user",
+                "operationId": "430618624b90f3b94e90e86921470fdd",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the user",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Delete user",
+                "description": "Delete user",
+                "operationId": "fb7c6cd121c930b66eefc7569b0f0ab3",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "user id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User removed successfully.",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Update a new user",
+                "description": "Update a new user by providing the necessary information",
+                "operationId": "4e503750a14b7c84b0d397cac292a474",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "user id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "description": "The user's name",
+                                        "type": "string",
+                                        "example": "John Doe"
+                                    },
+                                    "email": {
+                                        "description": "The user's email",
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "john.doe@example.com"
+                                    },
+                                    "company": {
+                                        "description": "Company you work for",
+                                        "type": "string",
+                                        "example": "Microsoft"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "User updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "example": "John Doe"
+                                        },
+                                        "email": {
+                                            "type": "string",
+                                            "example": "john.doe@example.com"
+                                        },
+                                        "company": {
+                                            "type": "string",
+                                            "example": "Microsoft"
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "example": "2024-12-07T12:00:00Z"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Job",
+            "description": "Job"
+        },
+        {
+            "name": "Phones",
+            "description": "Phones"
+        },
+        {
+            "name": "Users",
+            "description": "Users"
+        }
+    ]
+}

@@ -30,14 +30,14 @@ class MailJob implements ShouldQueue
 
     public function getNews() 
     {
-        $news = [];
-        $queueNews = [];
+        $news = []; // list of news that will be saved in the cache with redis
+        $queueNews = []; // queue of news that will be sent
 
-        if (Cache::get('news')) {
+        if (Cache::get('news')) { // if news is not null in the cache
             $news = Cache::get('news');
         }
 
-        if (Cache::get('queueNews')) {
+        if (Cache::get('queueNews')) { // if queue of news is not null in the cache
             $queueNews = Cache::get('queueNews');
         } 
 
@@ -52,17 +52,17 @@ class MailJob implements ShouldQueue
             $xmlObject = simplexml_load_string($xmlContent, 'SimpleXMLElement', LIBXML_NOCDATA);
 
             $dataArray = json_decode(json_encode($xmlObject), true);
-            $newsUol = $dataArray['channel']['item'];
+            $newsUol = $dataArray['channel']['item']; // uol api news
 
-            $existingTitles = array_column($news, 'title');
+            $existingTitles = array_column($news, 'title'); // extract titles from news array
             foreach ($newsUol as $n)
             {
-                if (!in_array($n['title'], $existingTitles)) {
-                    $queueNews[] = $n;
+                if (!in_array($n['title'], $existingTitles)) { // if the current title does not exist in the extracted titles
+                    $queueNews[] = $n; // the current title will be added to the queue
                 }
             }
-            Cache::put('queueNews', $queueNews, 259200);
-            Cache::put('news', array_merge($news, $newsUol), 259200);
+            Cache::put('queueNews', $queueNews, 259200); // overlap queue
+            Cache::put('news', array_merge($news, $newsUol), 259200); // overlay news
         }
     }
 
@@ -86,21 +86,23 @@ class MailJob implements ShouldQueue
      */
     public function handle()
     {   
+        // I used FIFO as a strategy
+        // First In, First Out
         $queueNews = [];
 
         if (Cache::get('queueNews')) {
             $queueNews = Cache::get('queueNews');
         } 
 
-        if (count($queueNews) > 0) {
-            $users = $this->getUsers();
-            Mail::to($users)->send(new NewsUolMail($queueNews[0]['title'], $queueNews[0]['description'], $queueNews[0]['link'], $queueNews[0]['pubDate']));
-            array_shift($queueNews);
-            Cache::put('queueNews', $queueNews, 259200);
+        if (count($queueNews) > 0) { // if the number of news in the queue is greater than 0
+            $users = $this->getUsers(); // email list
+            Mail::to($users)->send(new NewsUolMail($queueNews[0]['title'], $queueNews[0]['description'], $queueNews[0]['link'], $queueNews[0]['pubDate'])); // sends emails with the first news in line
+            array_shift($queueNews); // remove the first news from the queue
+            Cache::put('queueNews', $queueNews, 259200); // overlap queue
         } else {
-            $this->getNews();
+            $this->getNews(); // executes function that returns news
         }
         
-        self::dispatch()->delay(now()->addSeconds(10));
+        self::dispatch()->delay(now()->addSeconds(60)); // makes use of recursion so that it loops in the background
     }
 }

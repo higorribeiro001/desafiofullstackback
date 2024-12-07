@@ -16,12 +16,56 @@ class PhoneController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
-     */
+     *
+     *  @OA\GET(
+     *      path="/api/phone",
+     *      summary="Get all phones",
+     *      description="Get all phones",
+     *      tags={"Phones"},
+     *      @OA\Response(
+     *          response=200,
+     *          description="OK",
+     *          @OA\MediaType(
+     *              mediaType="application/json",
+     *          )
+     *      ),
+     *
+     *  )
+    */
     public function index()
     {
         return response()->json($this->phone->with('user:id,name')->get(), 200);
     }
 
+    /**
+    *  @OA\POST(
+    *      path="/api/phone",
+    *      summary="Create a new phone",
+    *      description="Create a new phone by providing the necessary information",
+    *      tags={"Phones"},
+    *      @OA\RequestBody(
+    *          required=true,
+    *          @OA\JsonContent(
+    *              type="object",
+    *              required={"user_id", "num"},
+    *              @OA\Property(property="user_id", type="integer", example=1, description="The user id"),
+    *              @OA\Property(property="num", type="string", example="(99) 99999-9999", description="The number of phone"),
+    *          )
+    *      ),
+    *      @OA\Response(
+    *          response=201,
+    *          description="Phone created successfully",
+    *          @OA\MediaType(
+    *              mediaType="application/json",
+    *              @OA\Schema(
+    *                  type="object",
+    *                  @OA\Property(property="user_id", type="integer", example=1),
+    *                  @OA\Property(property="num", type="string", example="(99) 99999-9999"),
+    *              )
+    *          )
+    *      ),
+    *  )
+    */
     public function store(Request $request)
     {
         $request->validate($this->phone->rules());
@@ -39,7 +83,28 @@ class PhoneController extends Controller
      *
      * @param  Integer
      * @return \Illuminate\Http\Response
-     */
+     *
+     *  @OA\GET(
+     *      path="/api/phone/{id}",
+     *      summary="Get phone",
+     *      description="Get phone",
+     *      tags={"Phones"},
+     *      @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="phone id",
+     *         required=true,
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="OK",
+     *          @OA\MediaType(
+     *              mediaType="application/json",
+     *          )
+     *      ),
+     *
+     *  )
+    */
     public function show($id)
     {
         $phone = $this->phone->with('user:id,name')->find($id);
@@ -58,6 +123,41 @@ class PhoneController extends Controller
      * @param  Integer 
      * @return \Illuminate\Http\Response
      */
+    /**
+    *  @OA\PATCH(
+    *      path="/api/phone/{id}",
+    *      summary="Update a new phone",
+    *      description="Update a new phone by providing the necessary information",
+    *      tags={"Phones"},
+    *      @OA\Parameter(
+    *          name="id",
+    *          in="path",
+    *          required=true,
+    *          description="phone id",
+    *          @OA\Schema(type="integer")
+    *      ),
+    *      @OA\RequestBody(
+    *          required=true,
+    *          @OA\JsonContent(
+    *              type="object",
+    *              @OA\Property(property="user_id", type="integer", example=1, description="The user id"),
+    *              @OA\Property(property="num", type="string", example="(99) 99999-9999", description="The number of phone"),
+    *          )
+    *      ),
+    *      @OA\Response(
+    *          response=200,
+    *          description="Phone updated successfully",
+    *          @OA\MediaType(
+    *              mediaType="application/json",
+    *              @OA\Schema(
+    *                  type="object",
+    *                  @OA\Property(property="user_id", type="integer", example=1),
+    *                  @OA\Property(property="num", type="string", example="(99) 99999-9999"),
+    *              )
+    *          )
+    *      ),
+    *  )
+    */
     public function update(Request $request, $id)
     {
         $phone = $this->phone->find($id);
@@ -92,6 +192,28 @@ class PhoneController extends Controller
      * @param  Integer
      * @return \Illuminate\Http\Response
      */
+    /**
+     *  @OA\DELETE(
+     *      path="/api/phone/{id}",
+     *      summary="Delete phone",
+     *      description="Delete phone",
+     *      tags={"Phones"},
+     *      @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="phone id",
+     *         required=true,
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Phone removed successfully.",
+     *          @OA\MediaType(
+     *              mediaType="application/json",
+     *          )
+     *      ),
+     *
+     *  )
+    */
     public function destroy($id)
     {
         $phone = $this->phone->find($id);
