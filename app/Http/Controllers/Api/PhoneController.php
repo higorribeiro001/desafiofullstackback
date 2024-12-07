@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Phone;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class PhoneController extends Controller
 {
@@ -21,13 +22,7 @@ class PhoneController extends Controller
         return response()->json($this->phone->with('user:id,name')->get(), 200);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StorePhoneRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StorePhoneRequest $request)
+    public function store(Request $request)
     {
         $request->validate($this->phone->rules());
 

@@ -25,3 +25,4 @@ Route::get('/csrf-token', function () {
 
 Route::apiResource('user', 'App\Http\Controllers\Api\UserController');
 Route::apiResource('phone', 'App\Http\Controllers\Api\PhoneController');
+Route::apiResource('job', 'App\Http\Controllers\Api\MailNewsController');

@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Mail\MessageRegisterUserMail;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,8 +15,4 @@ use App\Mail\MessageRegisterUserMail;
 
 Route::get('/', function () {
     return view('welcome');
-});
-
-Route::get('/email', function () {
-    return new MessageRegisterUserMail('Higor Araujo');
 });

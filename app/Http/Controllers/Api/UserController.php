@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
-
+use App\Jobs\MailRegisterJob;
 
 class UserController extends Controller
 {
@@ -50,7 +50,11 @@ class UserController extends Controller
             'password'  => Hash::make($request->password),
         ]);
 
-        $user->sendSuccessRegisterNotification($request->email, $request->name);
+        try {
+            MailRegisterJob::dispatch($user);
+        } catch(\Exception $e) {
+            return response()->json($e, 500);
+        }
 
         return response()->json($user, 201);
     }

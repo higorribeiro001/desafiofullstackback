@@ -21,15 +21,13 @@ return new class extends Migration
         $user->email_verified_at = now()->getTimestamp();
         $user->password = bcrypt('12345678');
         $user->save();
-        $user->createToken(Str::random(60),)->plainTextToken;
 
         $user = new \App\Models\User();
-        $user->name = 'Beltrano da Silveira';
-        $user->email = 'beltrano@teste.com.br';
+        $user->name = 'Desafio Dev';
+        $user->email = 'desafiodev88@gmail.com';
         $user->email_verified_at = now()->getTimestamp();
         $user->password = bcrypt('12345678');
         $user->save();
-        $user->createToken(Str::random(60))->plainTextToken;
     }
 
     /**
