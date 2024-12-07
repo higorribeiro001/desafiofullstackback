@@ -33,8 +33,4 @@ class User extends Model
     public function phones() {
         return $this->hasMany('App\Models\Phone');
     }
-
-    public function sendSuccessRegisterNotification($email, $name) {
-        Mail::to($email)->send(new MessageRegisterUserMail($name));
-    }
 }
