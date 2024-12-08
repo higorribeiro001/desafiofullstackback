@@ -31,7 +31,7 @@ LOG_DEPRECATIONS_CHANNEL=null
 LOG_LEVEL=debug
 
 DB_CONNECTION=sqlite
-DB_DATABASE=C:/Users/Higor/Documents/desafio-e-inov/back/desafiofullstackback/database/database.sqlite
+DB_DATABASE=
 
 BROADCAST_DRIVER=log
 CACHE_DRIVER=redis
