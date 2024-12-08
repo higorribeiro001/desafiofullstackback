@@ -13,7 +13,75 @@
 ![Captura de tela 2024-12-08 0003012](https://github.com/user-attachments/assets/fe9c7ea5-4015-43f7-82a5-3703818afae8)
 
 > Execução:
-#### 
+#### Após clonar o projeto, deve-se instalar todas as dependencias:
+~~~~
+composer install
+~~~~
+#### Em sequência configurar as variáveis de ambiente, crie um arquivo .env e cole o seguinte conteúdo:
+~~~~
+APP_NAME=Desafio
+APP_ENV=local
+APP_KEY=base64:U3PZgaPqFlhvlGE4C954y79WSPMtFZKkaz/cPCmLUq8=
+APP_DEBUG=true
+APP_URL=https://einov.com/
+APP_INOV=https://einov.com/
+
+LOG_CHANNEL=stack
+LOG_DEPRECATIONS_CHANNEL=null
+LOG_LEVEL=debug
+
+DB_CONNECTION=sqlite
+DB_DATABASE=C:/Users/Higor/Documents/desafio-e-inov/back/desafiofullstackback/database/database.sqlite
+
+BROADCAST_DRIVER=log
+CACHE_DRIVER=redis
+FILESYSTEM_DISK=local
+QUEUE_CONNECTION=database
+SESSION_DRIVER=file
+SESSION_LIFETIME=120
+
+MEMCACHED_HOST=127.0.0.1
+
+REDIS_HOST=127.0.0.1
+REDIS_PASSWORD=null
+REDIS_PORT=6379
+REDIS_CLIENT=predis
+
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=587
+MAIL_USERNAME=sistemaamz@gmail.com
+MAIL_PASSWORD="yola hqtm harf jluc"
+MAIL_ENCRYPTION=TLS
+MAIL_FROM_ADDRESS="${MAIL_USERNAME}"
+MAIL_FROM_NAME="${APP_NAME}"
+
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+AWS_DEFAULT_REGION=us-east-1
+AWS_BUCKET=
+AWS_USE_PATH_STYLE_ENDPOINT=false
+
+PUSHER_APP_ID=
+PUSHER_APP_KEY=
+PUSHER_APP_SECRET=
+PUSHER_HOST=
+PUSHER_PORT=443
+PUSHER_SCHEME=https
+PUSHER_APP_CLUSTER=mt1
+
+VITE_PUSHER_APP_KEY="${PUSHER_APP_KEY}"
+VITE_PUSHER_HOST="${PUSHER_HOST}"
+VITE_PUSHER_PORT="${PUSHER_PORT}"
+VITE_PUSHER_SCHEME="${PUSHER_SCHEME}"
+VITE_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"
+
+SESSION_DOMAIN=localhost
+SANCTUM_STATEFUL_DOMAINS=localhost
+L5_SWAGGER_CONST_HOST=http://project.test/api/v1
+
+~~~~
+
 ~~~
 php artisan serve
 ~~~
