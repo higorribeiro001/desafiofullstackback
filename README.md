@@ -79,9 +79,36 @@ VITE_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"
 SESSION_DOMAIN=localhost
 SANCTUM_STATEFUL_DOMAINS=localhost
 L5_SWAGGER_CONST_HOST=http://project.test/api/v1
-
 ~~~~
+#### A partir daqui será essencial que tenha o Docker instalado em sua máquina para rodar o redis, mas poderá utilizar outra maneira se preferir (só não esqueça de configurar o redis no .env). Com docker basta executar os seguintes comandos:
+~~~~
+docker pull redis:6.0.20-bookworm
+~~~~
+#### Deve-se criar um volume:
+~~~~
+docker volume create redisdb
+~~~~
+#### Por fim basta executar:
+~~~~
+docker run -v redisdb>/data -p 6379:6379 --name redisdb redis:6.0.20-bookworm
+~~~~
+#### Caso queira rodar os testes unitários, para os testes de usuários:
+~~~~
+php artisan test --filter=UserControllerTest 
+~~~~
+#### E os de telefones:
+~~~~
+php artisan test --filter=PhoneControllerTest 
+~~~~
+#### Antes de iniciar o job de e-mails pelo endpoint, deve executar o seguinte comando em outro terminal:
+~~~~
+php artisan queue:work --tries=3
+~~~~
+#### Obs: tries é para que em caso de falha ele tente mais duas vezes.
 
+#### Por último, é só executar o comando abaixo e a API estará no ar:
 ~~~
 php artisan serve
 ~~~
+
+#### Para acessar o Swagger: http://localhost:8000/api/documentation#/
