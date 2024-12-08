@@ -147,7 +147,11 @@ class UserController extends Controller
 
         $request->validate($this->user->rules());
         $image = $request->file('image');
-        $image_urn = $image->store('images/users', 'public');
+        $image_urn = null;
+
+        if ($image) {
+            $image_urn = $image->store('images/users', 'public'); 
+        }
 
         $user = $this->user->create([
             'name'      => $request->name,

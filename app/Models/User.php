@@ -22,7 +22,7 @@ class User extends Model
     public function rules() {
         return [
             'name' => 'required|min:5|max:120',
-            'image' => 'required|file|mimes:png,jpeg,jpg',
+            'image' => 'file|mimes:png,jpeg,jpg',
             'email' => 'required|unique:users,email,'.$this->id.'|email|min:5',
             'company' => 'required|min:5|max:120',
             'password' => 'required|min:8|regex:/[A-Z]/|regex:/[0-9]/|regex:/[@$!%*?&]/'
