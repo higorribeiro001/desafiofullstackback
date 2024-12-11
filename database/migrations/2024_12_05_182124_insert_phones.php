@@ -14,12 +14,12 @@ return new class extends Migration
     public function up()
     {
         $phone = new \App\Models\Phone();
-        $phone->num = '+55 (99) 99999-9999';
+        $phone->num = '(99) 99999-9999';
         $phone->user_id = 1;
         $phone->save();
 
         $phone = new \App\Models\Phone();
-        $phone->num = '+55 (99) 98888-9999';
+        $phone->num = '(99) 98888-9999';
         $phone->user_id = 2;
         $phone->save();
     }
