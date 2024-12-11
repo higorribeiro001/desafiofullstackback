@@ -40,7 +40,7 @@ class UserController extends Controller
     *  )
     */
     public function index() {
-        return response()->json($this->user->select(['id', 'name', 'email', 'company', 'created_at', 'updated_at'])->with('phones:user_id,num')->paginate(10), 200);
+        return response()->json($this->user->select(['id', 'name', 'email', 'company', 'created_at', 'updated_at'])->with('phones:id,user_id,num')->paginate(10), 200);
     }
 
     /**
@@ -72,7 +72,7 @@ class UserController extends Controller
      *  )
     */
     public function show($id) {
-        $user = $this->user->select(['id', 'name', 'image', 'email', 'company', 'created_at', 'updated_at'])->with('phones:user_id,num')->find($id);
+        $user = $this->user->select(['id', 'name', 'image', 'email', 'company', 'created_at', 'updated_at'])->with('phones:id,user_id,num')->find($id);
 
         if (!$user) {
             return response()->json(['error' => 'Resource searched for does not exist.'], 404);
