@@ -94,6 +94,10 @@ docker volume create redisdb
 ~~~~
 docker run -v redisdb>/data -p 6379:6379 --name redisdb redis:6.0.20-bookworm
 ~~~~
+#### Para realizar as migrações:
+~~~~
+php artisan migrate
+~~~~
 #### Caso queira rodar os testes unitários, para os testes de usuários:
 ~~~~
 php artisan test --filter=UserControllerTest 
