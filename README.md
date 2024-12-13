@@ -19,7 +19,7 @@ Obs: O projeto contém seeds e factories, que podem ser utilizados para popular 
 ~~~~
 composer install
 ~~~~
-#### Em sequência configurar as variáveis de ambiente, crie um arquivo .env e cole o seguinte conteúdo:
+#### Em sequência configurar as variáveis de ambiente, crie um arquivo .env e cole o seguinte conteúdo (Certifique-se de colocar o caminho total do arquivo database.sqlite caso ele não seja encontrado, algo assim: C:/Users/Higor/Documents/Desafio-e-inov/back/desafiofullstackback/database/database.sqlite):
 ~~~~
 APP_NAME=Desafio
 APP_ENV=local
