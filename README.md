@@ -19,7 +19,7 @@ Obs: O projeto contém seeds e factories, que podem ser utilizados para popular 
 ~~~~
 composer install
 ~~~~
-#### Em sequência configurar as variáveis de ambiente, crie um arquivo .env e cole o seguinte conteúdo (certifique-se de colocar o caminho do seu database.sqlite em DB_DATABASE):
+#### Em sequência configurar as variáveis de ambiente, crie um arquivo .env e cole o seguinte conteúdo:
 ~~~~
 APP_NAME=Desafio
 APP_ENV=local
@@ -33,7 +33,7 @@ LOG_DEPRECATIONS_CHANNEL=null
 LOG_LEVEL=debug
 
 DB_CONNECTION=sqlite
-DB_DATABASE=
+DB_DATABASE=database/database.sqlite
 
 BROADCAST_DRIVER=log
 CACHE_DRIVER=redis
