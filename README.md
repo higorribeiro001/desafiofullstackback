@@ -98,6 +98,10 @@ docker run -v redisdb>/data -p 6379:6379 --name redisdb redis:6.0.20-bookworm
 ~~~~
 php artisan migrate
 ~~~~
+#### Para criar um link simbólico para disponibilizar o acesso público ao conteúdo de storage como imagens:
+~~~~
+php artisan storage:link
+~~~~
 #### Caso queira rodar os testes unitários, para os testes de usuários:
 ~~~~
 php artisan test --filter=UserControllerTest 
