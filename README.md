@@ -19,7 +19,7 @@ Obs: O projeto contém seeds e factories, que podem ser utilizados para popular 
 ~~~~
 composer install
 ~~~~
-#### Em sequência configurar as variáveis de ambiente, crie um arquivo .env e cole o seguinte conteúdo:
+#### Em sequência configurar as variáveis de ambiente, crie um arquivo .env e cole o seguinte conteúdo (Certifique-se de colocar o caminho total do arquivo database.sqlite caso ele não seja encontrado, algo assim: C:/Users/Higor/Documents/Desafio-e-inov/back/desafiofullstackback/database/database.sqlite):
 ~~~~
 APP_NAME=Desafio
 APP_ENV=local
@@ -33,7 +33,7 @@ LOG_DEPRECATIONS_CHANNEL=null
 LOG_LEVEL=debug
 
 DB_CONNECTION=sqlite
-DB_DATABASE=
+DB_DATABASE=database/database.sqlite
 
 BROADCAST_DRIVER=log
 CACHE_DRIVER=redis
@@ -93,6 +93,14 @@ docker volume create redisdb
 #### Por fim basta executar:
 ~~~~
 docker run -v redisdb>/data -p 6379:6379 --name redisdb redis:6.0.20-bookworm
+~~~~
+#### Para realizar as migrações (garanta que as extensões pdo_sqlite e sqlite3 estejam habilitadas no php.ini):
+~~~~
+php artisan migrate
+~~~~
+#### Para criar um link simbólico para disponibilizar o acesso público ao conteúdo de storage como imagens:
+~~~~
+php artisan storage:link
 ~~~~
 #### Caso queira rodar os testes unitários, para os testes de usuários:
 ~~~~
