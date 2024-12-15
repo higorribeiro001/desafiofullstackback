@@ -6,7 +6,7 @@
 Obs: O projeto contém seeds e factories, que podem ser utilizados para popular o banco e trazer mais usuários. No entanto, não acho muito proveitoso, já que muitos dos e-mails são inválidos e acaba afetando com falhas no job de envio de e-mails. Recomendo não utilizar.
 
 #### Captura de tela do swagger:
-![Captura de tela 2024-12-08 0001481](https://github.com/user-attachments/assets/61eda17a-5ca3-4c7b-9210-5c3e37772a6a)
+![Captura de tela 2024-12-15 120727](https://github.com/user-attachments/assets/37e90250-426b-467f-b9ce-c90ff7901133)
 
 #### Captura de tela da execução de testes:
 ![Captura de tela 2024-12-08 000005](https://github.com/user-attachments/assets/20813fc4-676d-4bcf-8b62-ab39c3b1bb96)
@@ -110,11 +110,15 @@ php artisan test --filter=UserControllerTest
 ~~~~
 php artisan test --filter=PhoneControllerTest 
 ~~~~
-#### Antes de iniciar o job de e-mails pelo endpoint, deve executar o seguinte comando em outro terminal:
+#### Antes de iniciar o job de e-mail de cadastro do usuário, deve executar o seguinte comando em outro terminal:
 ~~~~
 php artisan queue:work --tries=3
 ~~~~
 #### Obs: tries é para que em caso de falha ele tente mais duas vezes.
+#### E também iniciar o job de envio de e-mails de notícias que está agendado:
+~~~~
+php artisan schedule:work
+~~~~
 
 #### Por último, é só executar o comando abaixo e a API estará no ar:
 ~~~
