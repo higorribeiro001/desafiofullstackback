@@ -13,24 +13,6 @@
         "version": "1.0.0"
     },
     "paths": {
-        "/api/job": {
-            "get": {
-                "tags": [
-                    "Job"
-                ],
-                "summary": "Start job",
-                "description": "Route to start the news sending job",
-                "operationId": "8d84f4e76898766367bb80fe3f0c4638",
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "application/json": {}
-                        }
-                    }
-                }
-            }
-        },
         "/api/phone": {
             "get": {
                 "tags": [
@@ -488,10 +470,6 @@
         }
     },
     "tags": [
-        {
-            "name": "Job",
-            "description": "Job"
-        },
         {
             "name": "Phones",
             "description": "Phones"

@@ -102,7 +102,5 @@ class MailJob implements ShouldQueue
         } else {
             $this->getNews(); // executes function that returns news
         }
-        
-        self::dispatch()->delay(now()->addSeconds(60)); // makes use of recursion so that it loops in the background
     }
 }
